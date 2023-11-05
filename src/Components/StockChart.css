@@ -1,0 +1,26 @@
+.chart {
+    width: 450px;
+    height: 350px;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid black;
+    padding: 15px 35px 15px 0;
+}
+
+@media screen and (max-width: 1160px) {
+    .chart {
+        width: 450px;
+        height: 300px;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .chart {
+        margin-bottom: 10px;
+        width: 300px;
+        height: 250px;
+    }
+}
+
+
+
