@@ -1,21 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import ShowList from "./ShowList";
-import Lottie from 'react-lottie';
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
+// import Lottie from 'react-lottie';
 import './FetchData.css';
 import loadingAni from './loadingAni.json';
 
 function FetchData() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const loadingAnimation = {
-        loop: true,
-        autoplay: true,
-        animationData: loadingAni,
-        rendererSettings: {
-            preserveAspectRatio: "xMidYMid slice",
-        },
-    };
+    // const loadingAnimation = {
+    //     loop: true,
+    //     autoplay: true,
+    //     animationData: loadingAni,
+    //     rendererSettings: {
+    //         preserveAspectRatio: "xMidYMid slice",
+    //     },
+    // };
     useEffect(() => {
 
         const tickers = ['AAPL', 'TSLA', 'AMZN', 'META', 'MSFT'];
@@ -77,7 +78,14 @@ function FetchData() {
                 <ShowList list={data}/>
             ) : (
                 <>
-                    <Lottie options={loadingAnimation} height={200} width={200}/>
+                    <Player
+                        autoplay
+                        loop
+                        src={loadingAni}
+                        style={{ height: '200px', width: '200px' }}
+                    >
+                        <Controls visible={false} buttons={['play', 'repeat', 'frame', 'debug']} />
+                    </Player>
                     <p>Fetching the latest stock data. Please wait, this may take up to 2 minutes.</p>
                     <p>Thank you for your patience.</p>
                 </>
