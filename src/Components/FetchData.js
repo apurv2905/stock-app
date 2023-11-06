@@ -9,22 +9,20 @@ import loadingAni from './loadingAni.json';
 function FetchData() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    // const loadingAnimation = {
-    //     loop: true,
-    //     autoplay: true,
-    //     animationData: loadingAni,
-    //     rendererSettings: {
-    //         preserveAspectRatio: "xMidYMid slice",
-    //     },
-    // };
+
     useEffect(() => {
 
         const tickers = ['AAPL', 'TSLA', 'AMZN', 'META', 'MSFT'];
         const today = new Date();
         console.log(today);
         const yesterday = new Date(today);
-
-        yesterday.setDate(today.getDate() - 2);
+        let minus = 1;
+        if(today.getDay() === 0) {
+            minus = 2;
+        } else if (today.getDay() === 1) {
+            minus = 3;
+        }
+        yesterday.setDate(today.getDate() - minus);
 
         const formattedDate = yesterday.toISOString().split('T')[0];
         async function fetchDataForTicker(ticker) {
